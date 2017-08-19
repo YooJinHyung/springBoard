@@ -14,7 +14,7 @@ import java.util.List;
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 
-    @Resource(name="customerDao")
+    @Resource(name = "customerDao")
     private CustomerDao customerDao;
 
     @Override
@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerInfoByIdPassword(Customer customer){
+    public Customer getCustomerInfoByIdPassword(Customer customer) {
         return customerDao.getCustomerInfoByIdPassword(customer);
     }
 

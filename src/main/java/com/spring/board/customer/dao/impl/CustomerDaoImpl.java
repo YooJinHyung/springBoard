@@ -16,18 +16,18 @@ public class CustomerDaoImpl implements CustomerDao {
     @Autowired
     private SqlSession sqlSession;
 
-    public void setSqlSession(SqlSession sqlSession){
+    public void setSqlSession(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
 
     @Override
-    public List<Customer> getCustomerList(Customer customer){
+    public List<Customer> getCustomerList(Customer customer) {
         return sqlSession.selectList("com.spring.board.customer.dao.CustomerDao.getCustomerList", customer);
     }
 
     @Override
-    public Customer getCustomerInfoByIdPassword(Customer customer){
+    public Customer getCustomerInfoByIdPassword(Customer customer) {
         System.out.println(customer.getId());
-        return sqlSession.selectOne("getCustomerInfoByIdPassword",customer);
+        return sqlSession.selectOne("getCustomerInfoByIdPassword", customer);
     }
 }

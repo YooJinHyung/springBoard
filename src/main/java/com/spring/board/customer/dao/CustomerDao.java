@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface CustomerDao {
     List<Customer> getCustomerList(Customer customer);
+
     Customer getCustomerInfoByIdPassword(Customer customer);
 }

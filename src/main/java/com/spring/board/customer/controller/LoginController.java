@@ -16,42 +16,43 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 public class LoginController {
-    private final int KEY_SIZE =2080;
+    private final int KEY_SIZE = 2080;
     @Autowired
     private CustomerService customerService;
+
     @RequestMapping("/page1")
-    public String page1(){
+    public String page1() {
         return "page1";
     }
 
     @RequestMapping("/page2")
-    public String page2(){
+    public String page2() {
         return "page2";
     }
 
-    @RequestMapping ("/login")
-    public String login(){
+    @RequestMapping("/login")
+    public String login() {
         return "member/login";
     }
 
     @RequestMapping("/logout")
-    public String logout(HttpSession session){
-        session.setAttribute("userLoginInfo",null);
+    public String logout(HttpSession session) {
+        session.setAttribute("userLoginInfo", null);
         return "redirect:/login";
     }
 
-    @RequestMapping(value="loginProcess", method = RequestMethod.POST)
-    public String loginProcess(Customer customer, HttpSession session, HttpServletRequest request){
+    @RequestMapping(value = "loginProcess", method = RequestMethod.POST)
+    public String loginProcess(Customer customer, HttpSession session, HttpServletRequest request) {
         Customer Info = customerService.getCustomerInfoByIdPassword(customer);
-        if(Info != null)
+        if (Info != null)
             return "home";
         String mav = "redirect:/login";
 
         return mav;
     }
 
-    @RequestMapping(value="/member/joinIn")
-    public String joinIn(Customer customer){
+    @RequestMapping(value = "/member/joinIn")
+    public String joinIn(Customer customer) {
         return "redirect:/login";
     }
 }

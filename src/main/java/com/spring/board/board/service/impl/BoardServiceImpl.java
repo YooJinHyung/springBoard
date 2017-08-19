@@ -7,27 +7,34 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
-    @Resource(name ="BoardDao")
+    @Resource(name = "BoardDao")
     private BoardDao boardDao;
 
     @Override
-    public List<Board> getBoardAllList(){
+    public List<Board> getBoardAllList() {
         return boardDao.selectBoardList();
     }
 
     @Override
-    public int writeBoard(Board board){
+    public int writeBoard(Board board) {
         return boardDao.insertBoard(board);
     }
 
     @Override
-    public Board getBoardDetail(int index){return boardDao.selectBoardDetail(index);}
+    public Board getBoardDetail(int index) {
+        return boardDao.selectBoardDetail(index);
+    }
 
     @Override
-    public int updateBoard(Board board) {return boardDao.updateBoard(board);}
+    public int updateBoard(Board board) {
+        return boardDao.updateBoard(board);
+    }
 
     @Override
-    public int deleteBoard(int index) {return boardDao.deleteBoard(index);}
+    public int deleteBoard(int index) {
+        return boardDao.deleteBoard(index);
+    }
 }

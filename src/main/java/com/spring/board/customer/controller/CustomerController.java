@@ -6,7 +6,9 @@ package com.spring.board.customer.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import java.security.KeyPairGenerator;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,13 +20,12 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(value="/login!!", method= RequestMethod.GET)
-    public String login(Model model){
-        try{
+    @RequestMapping(value = "/login!!", method = RequestMethod.GET)
+    public String login(Model model) {
+        try {
             KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
             generator.initialize(KEY_SIZE);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
 
         }
         return "login";

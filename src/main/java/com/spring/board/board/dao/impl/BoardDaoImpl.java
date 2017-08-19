@@ -20,23 +20,23 @@ public class BoardDaoImpl implements BoardDao {
     }
 
     @Override
-    public int insertBoard(Board board){
-        return sqlSession.insert("com.spring.board.board.dao.BoardDao.insertBoard",board);
+    public int insertBoard(Board board) {
+        return sqlSession.insert("com.spring.board.board.dao.BoardDao.insertBoard", board);
     }
 
     @Override
     public Board selectBoardDetail(int index) {
-        return sqlSession.selectOne("com.spring.board.board.dao.BoardDao.selectBoardDetail",index);
+        return sqlSession.selectOne("com.spring.board.board.dao.BoardDao.selectBoardDetail", index);
     }
 
     @Override
     public int updateBoard(Board board) {
-        return sqlSession.update("com.spring.board.board.dao.BoardDao.updateBoard",board);
+        return sqlSession.update("com.spring.board.board.dao.BoardDao.updateBoard", board);
     }
 
     @Override
     public int deleteBoard(int index) {
-        return sqlSession.delete("com.spring.board.board.dao.BoardDao.deleteBoard",index);
+        return sqlSession.delete("com.spring.board.board.dao.BoardDao.deleteBoard", index);
     }
 
 }
