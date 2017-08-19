@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.board.board.dao.BoardDao">
+    <select id="selectBoardList"  resultType="com.spring.board.board.model.Board">
+    select `index`,
+	        title,
+            content,
+            hit_count as hitCount,
+            create_day as createDay,
+            create_id as createId
+     from board
+    order by `index` desc
+    </select>
+
+    <select id="selectBoardDetail" parameterType="int" resultType="com.spring.board.board.model.Board">
+        select `index`,
+	        title,
+            content,
+            hit_count as hitCount,
+            create_day as createDay,
+            create_id as createId
+        from board
+        where `index`=#{index}
+    </select>
+
+    <insert id="insertBoard" parameterType="com.spring.board.board.model.Board">
+        INSERT INTO `hairshin`.`board` (`title`, `content`, `create_day`, `create_id`)
+        VALUES (#{title}, #{content}, #{createDay}, #{createId});
+    </insert>
+
+    <update id="updateBoard" parameterType="com.spring.board.board.model.Board">
+        UPDATE `hairshin`.`board` SET `title`=#{title}, `content`=#{content} WHERE `index`=#{index};
+    </update>
+
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM `hairshin`.`board` WHERE `index`=#{index};
+    </delete>
+</mapper>
