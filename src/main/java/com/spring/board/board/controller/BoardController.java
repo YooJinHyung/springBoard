@@ -30,7 +30,7 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/board")
-    public ModelAndView openBoardList(@ModelAttribute Board board) {   //todo modelAttribute, RequestParam, RequestBody -검색해보기!!!!!
+    public ModelAndView openBoardList(@ModelAttribute Board board) {   //TODO modelAttribute, RequestParam, RequestBody -검색해보기!!!!!
         ModelAndView mv = new ModelAndView("/board/boardList");//대상이 되는 view 지정
         List<Board> list = boardService.getBoardAllList();
         mv.addObject("list", list);//넘겨줄 object 등록
