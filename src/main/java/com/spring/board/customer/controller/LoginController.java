@@ -20,6 +20,11 @@ public class LoginController {
     @Autowired
     private CustomerService customerService;
 
+    @RequestMapping("/")
+    public String main() {
+        return "login";
+    }
+
     @RequestMapping("/page1")
     public String page1() {
         return "page1";
@@ -32,7 +37,7 @@ public class LoginController {
 
     @RequestMapping("/login")
     public String login() {
-        return "member/login";
+        return "login";
     }
 
     @RequestMapping("/logout")
@@ -44,10 +49,11 @@ public class LoginController {
     @RequestMapping(value = "loginProcess", method = RequestMethod.POST)
     public String loginProcess(Customer customer, HttpSession session, HttpServletRequest request) {
         Customer Info = customerService.getCustomerInfoByIdPassword(customer);
-        if (Info != null)
-            return "home";
+        if (Info != null){
+            request.getSession().setAttribute("loginInfo",Info);
+            return "/board";
+        }
         String mav = "redirect:/login";
-
         return mav;
     }
 

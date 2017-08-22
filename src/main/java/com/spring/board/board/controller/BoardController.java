@@ -15,13 +15,14 @@ import javax.annotation.Resource;
 
 @Controller
 public class BoardController {
+    private static final int pageSize = 3;
     @Resource(name = "boardService")
     private BoardService boardService;
 
-    @RequestMapping("/")
-    public String redirectBoard() {
-        return "redirect:/board";
-    }
+//    @RequestMapping("/")
+//    public String redirectBoard() {
+//        return "redirect:/board";
+//    }
 
     @ResponseBody
     @GetMapping("/board/list")
@@ -30,10 +31,17 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/board")
-    public ModelAndView openBoardList(@ModelAttribute Board board) {   //TODO modelAttribute, RequestParam, RequestBody -검색해보기!!!!!
+    public ModelAndView openBoardList(@ModelAttribute Board board, @RequestParam(required = false, defaultValue = "1") Integer page) {   //TODO modelAttribute, RequestParam, RequestBody -검색해보기!!!!!
         ModelAndView mv = new ModelAndView("/board/boardList");//대상이 되는 view 지정
         List<Board> list = boardService.getBoardAllList();
-        mv.addObject("list", list);//넘겨줄 object 등록
+        int maxPage = list.size() / pageSize + 1;
+        int startOffset = pageSize * (page - 1);
+        int endOffset = startOffset + pageSize;
+        if (startOffset + pageSize > list.size()) {
+            endOffset = list.size();
+        }
+        mv.addObject("list", list.subList(startOffset, endOffset));//넘겨줄 object 등록
+        mv.addObject("maxPage", maxPage);
         return mv;
     }
 
