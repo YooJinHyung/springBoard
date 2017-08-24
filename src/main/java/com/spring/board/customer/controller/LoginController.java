@@ -4,6 +4,7 @@ import com.spring.board.customer.model.Customer;
 import com.spring.board.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //RSA 이용 라이브러리
@@ -47,11 +48,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "loginProcess", method = RequestMethod.POST)
-    public String loginProcess(Customer customer, HttpSession session, HttpServletRequest request) {
+    public String loginProcess(@ModelAttribute Customer customer, HttpSession session, HttpServletRequest request) {
         Customer Info = customerService.getCustomerInfoByIdPassword(customer);
         if (Info != null){
             request.getSession().setAttribute("loginInfo",Info);
-            return "/board";
+            request.getSession().setMaxInactiveInterval(600);
+            return "/board/boardList";
         }
         String mav = "redirect:/login";
         return mav;

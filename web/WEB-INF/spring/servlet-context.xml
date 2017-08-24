@@ -8,9 +8,12 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <mvc:annotation-driven/>
 
-    <!--<mvc:interceptors>-->
-        <!--<bean class= "com.spring.board.customer.service.LoginCheckService"/>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/board/**"/>
+            <bean class= "com.spring.board.customer.service.LoginCheckService"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">

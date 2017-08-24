@@ -22,7 +22,7 @@ public class LoginCheckService extends HandlerInterceptorAdapter{
         try {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                Customer customer = (Customer)session.getAttribute("userInfo");
+                Customer customer = (Customer)session.getAttribute("loginInfo");
 
                 if(customer != null && customer.getId() != null){
                     return true;

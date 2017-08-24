@@ -18,6 +18,6 @@
             password
         FROM
             customer
-        WHERE id = #{id} and password = #{pw}
+        WHERE `id` = #{id} and `password` = #{pw}
     </select>
 </mapper>
